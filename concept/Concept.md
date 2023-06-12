@@ -57,3 +57,20 @@ struct SupportsLessThan<T, std::void_t<decltype(std::declval<T>() < std::declval
 template <typename T>
 constexpr bool SupportsLessThan_v = SupportsLessThan<T>::value;
 ```
+
+When you are using c++11, things gonna be more complicated
+```c++
+template <typename T>
+struct SupportsLessThan{
+private:
+    template <typename, typename=decltype(std::declval<T>()<std::declval<T>())>
+    static char test(void*);
+
+    template <typename>
+    static long test(...);
+public:
+    static constexpr bool value = is_same<decltype(test<T>(nullptr)),char)>::value;
+}
+template <typename T>
+constexpr bool SupportsLessThan_v SupportsLessThan<T>::value;
+```
