@@ -12,7 +12,7 @@ T mymax(T a, T b){
 int i1 = 42, i2 = 77;
 std::cout << mymax(i1, i2);
 
-std::cout << mymax<7, 33.4>
+std::cout << mymax(7, 33.4);
 
 std::complex<double> c1, c2;
 std::cout << mymax(c1, c2);  //no < supported
